@@ -61,11 +61,25 @@
 %\usepackage{color}
 \usepackage[usenames, dvipsnames]{color}
 \definecolor{mygray}{gray}{0.8}
+
 %\setCJKmainfont{DFMing-Md-HK-BF.ttf}
 \setCJKmainfont{wqy-microhei.ttc}
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Command to make the lines in the title page
 \setlength\parindent{0pt} % Removes all indentation from paragraphs
 
+\usepackage{listings}
+\usepackage{listings-golang}
+\lstset{ % add your own preferences
+	frame=single,
+	basicstyle=\footnotesize,
+	keywordstyle=\color{red},
+	numbers=left,
+	numbersep=5pt,
+	showstringspaces=false, 
+	stringstyle=\color{blue},
+	tabsize=4,
+	language=Golang % this is it !
+}
 %----------------------------------------------------------------------------------------
 %	DEFINITION OF EXPERIMENTS
 %----------------------------------------------------------------------------------------
@@ -120,136 +134,7 @@
 
 %----------------------------------------------------------------------------------------
 
-\labday{Friday, 25 November 2011}
-
-\experiment{example}
-
-\lipsum[1]
-
-%-----------------------------------------
-
-\experiment{example2} % Multiple experiments can be included in a single day, this allows you to segment what was done each day into separate categories
-
-\begin{figure}[H] % Example of including images
-\begin{center}
-\includegraphics[width=0.5\linewidth]{example_figure}
-\end{center}
-\caption{Example figure.}
-\label{fig:example_figure}
-\end{figure}
-
-%-----------------------------------------
-
-\experiment{example3}
-
-\lipsum[3-5]
-
-%----------------------------------------------------------------------------------------
-
-\labday{Friday, 26 March 2010}
-
-\experiment{table}
-
-\begin{table}[H]
-\begin{tabular}{l l l}
-\toprule
-\textbf{Groups} & \textbf{Treatment X} & \textbf{Treatment Y} \\
-\toprule
-1 & 0.2 & 0.8\\
-2 & 0.17 & 0.7\\
-3 & 0.24 & 0.75\\
-4 & 0.68 & 0.3\\
-\bottomrule
-\end{tabular}
-\caption{The effects of treatments X and Y on the four groups studied.}
-\label{tab:treatments_xy}
-\end{table}
-
-Table \ref{tab:treatments_xy} shows that groups 1-3 reacted similarly to the two treatments but group 4 showed a reversed reaction.
-
-%----------------------------------------------------------------------------------------
-
-\labday{Saturday, 27 March 2010}
-
-\experiment{Bulleted list example} % You don't need to make a \newexperiment if you only plan on referencing it once
-
-This is a bulleted list:
-
-\begin{itemize}
-\item Item 1
-\item Item 2
-\item \ldots and so on
-\end{itemize}
-
-%-----------------------------------------
-
-\experiment{example}
-
-\lipsum[6]
-
-%-----------------------------------------
-
-\experiment{example2}
-
-\lipsum[7]
-%-----------------------------------------
-
-%----------------------------------------------------------------------------------------
-%	FORMULAE AND MEDIA RECIPES
-%----------------------------------------------------------------------------------------
-
-\labday{} % We don't want a date here so we make the labday blank
-
-\begin{center}
-\HRule \\[0.4cm]
-{\huge \textbf{Formulae and Media Recipes}}\\[0.4cm] % Heading
-\HRule \\[1.5cm]
-\end{center}
-
-%----------------------------------------------------------------------------------------
-%	MEDIA RECIPES
-%----------------------------------------------------------------------------------------
-
-\newpage
-
-\huge \textbf{Media} \\ \\
-
-\normalsize \textbf{Media 1}\\
-\begin{table}[H]
-\begin{tabular}{l l l}
-\toprule
-\textbf{Compound} & \textbf{1L} & \textbf{0.5L}\\
-\toprule
-Compound 1 & 10g & 5g\\
-Compound 2 & 20g & 10g\\
-\bottomrule
-\end{tabular}
-\caption{Ingredients in Media 1.}
-\label{tab:med1}
-\end{table}
-
-%-----------------------------------------
-
-%\textbf{Media 2}\\ \\
-
-%Description
-
-%----------------------------------------------------------------------------------------
-%	FORMULAE
-%----------------------------------------------------------------------------------------
-
-\newpage
-
-\huge \textbf{Formulae} \\ \\
-
-\normalsize \textbf{Formula 1 - Pythagorean theorem}\\ \\
-$a^2 + b^2 = c^2$\\ \\
-
-%-----------------------------------------
-
-%\textbf{Formula X - Description}\\ \\
-
-%Formula
+%\include{templete}
 
 %----------------------------------------------------------------------------------------
 \include{mySample}
@@ -257,4 +142,5 @@ $a^2 + b^2 = c^2$\\ \\
 \include{20170929}
 \include{20180115}
 \include{20180116}
+\include{20180122}
 \end{document}

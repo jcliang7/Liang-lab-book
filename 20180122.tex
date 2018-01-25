@@ -1,0 +1,94 @@
+\labday{Monday, 22 January 2018}
+
+\experiment{新增登入頁面}
+
+
+\begin{enumerate}
+\item 問題原因：
+
+\item 解決辦法：
+
+細節參考米聽紀錄106/09/29
+
+\url{https://docs.google.com/document/d/1nxYJ4HLNCTJvEDQu7bVTM1Fs-pM4SiKjOUr1xN55fYg/edit}
+	\begin{itemize}
+	\item 在router.go裡新增/login路徑
+\begin{lstlisting}
+beego.Router("/login", &controllers.MainController{},"*:Login")
+\end{lstlisting}
+	
+	\item 到controllers/default.go裡寫Login的方法
+\begin{lstlisting}
+func (c *MainController) Login(){}
+\end{lstlisting}
+			
+	\end{itemize}
+\end{enumerate}
+
+\experiment{把顯示頁面的程式寫成函是GetContent(page string)}
+
+
+\begin{enumerate}
+	\item 問題原因：
+	
+	\item 解決辦法：
+	
+	\begin{itemize}
+		\item 函式主體
+
+\begin{lstlisting}
+func (c *MainController) GetContent(page string) {
+c.Data["Website"] = "beego.me"
+c.Data["Email"] = "astaxie@gmail.com"
+c.Layout = "layout.tpl"
+c.TplName = page + ".tpl"
+}		
+\end{lstlisting}
+			
+		\item 顯示首頁
+		
+\begin{lstlisting}
+c.GetContent("index")
+\end{lstlisting}
+		
+	\end{itemize}
+\end{enumerate}
+
+\experiment{如何判斷該頁面呼叫的是Get還是Post方法}
+
+
+\begin{enumerate}
+	\item 問題原因：
+	
+	login頁面在不同情況下呼叫Get或Post。呼叫Get時顯示login頁面，呼叫Post時執行登入動作。
+	
+	\item 解決辦法：
+	
+	c.Ctx.Input.Method()會回傳呼叫的方法。
+\begin{lstlisting}
+context := c.Ctx.Input.Method()
+if context == "GET" {
+c.GetContent("login")
+} else { // POST 
+}
+\end{lstlisting}
+\end{enumerate}
+
+\experiment{取得form data}
+
+
+\begin{enumerate}
+	\item 問題原因：
+	
+	使用者在表單裡輸入帳號密碼，要如何取得？	
+	\item 解決辦法：
+	
+	使用c.GetString({\color{blue}key string)
+	
+	key string： 放html裡該表格的name。}
+	
+	
+\end{enumerate}
+
+
+

@@ -1,0 +1,32 @@
+\labday{Wednesday, 27 September 2017}
+
+\experiment{解決每次重新開啟終端機，需要重新設定\$GOPATH的問題。}
+
+
+\begin{enumerate}
+\item 問題原因
+
+因為使用gvm作為go語言的版本控管器，選擇go版本後，會去抓g01.9這個檔案，裡面的環境變數是gvm預設的，所以每次都要重新設定。
+
+\item 解決辦法
+
+自訂一個環境變數，選擇go版本之後，指定環境變數檔。
+	\begin{itemize}
+	\item 選擇go版本，我選擇go1.9
+	
+	\colorbox{mygray}{\$ gvm use go1.9}
+
+	\item 在此版本下加入自訂環境變數”test”
+	
+	\colorbox{mygray}{\$ gvm pkgset create test}
+	\item 進到此資料夾「~./gvm/environments/」，找到「go1.9@test.txt」檔。修改此檔案，在檔案最後面加上以下兩行。
+	
+	\colorbox{mygray}{export GOPATH=”/home/user/goroot”}
+	
+	\colorbox{mygray}{export PATH=”\$GOPATH/bin:\$PATH”}
+	\item 在終端機下指令，指定使用test環境變數
+	
+	\colorbox{mygray}{\$ gvm pkgset use test}
+	\end{itemize}
+\end{enumerate}
+

@@ -1,0 +1,82 @@
+\labday{Monday, 15 January 2018}
+
+\experiment{製作git與goroot工作環境的連結}
+
+
+\begin{enumerate}
+\item 問題原因：
+
+git抓下來的資料夾除了go語言程式碼之外，還有其他資料，都放到goroot裡面很雜亂。然而，go語言的程式碼只能在goroot的工作還行下執行，所以要製作連結，把程式碼連到goroot裡。
+
+\item 解決辦法：
+
+將git的檔案連結到goroot，goroot裡只放要執行的程式碼。
+	\begin{itemize}
+	\item 進到go語言執行環境資料夾
+	
+	\colorbox{mygray}{\$ code goroog/src/jyw}
+	
+	\item 使用指令ln -s <git-folder> \colorbox{yellow}{{\color{blue}<link-name>}}建立連結資料夾。
+	
+	{\color{blue}<link-name>：goroot裡連結資料夾的名字}
+	
+	\colorbox{mygray}{\$ ln -s /home/liang/class-learning/go \colorbox{yellow}{class-learning}}
+	
+	\item 此時jyw目錄下會增加一個「class-learning」連結資料夾，在此修改的內容會同步到git的資料夾。
+			
+	\end{itemize}
+\end{enumerate}
+
+\experiment{建立「RefVer」(reference version)標籤}
+
+
+\begin{enumerate}
+	\item 問題原因：
+	
+	因為要將老師之前寫的網頁蓋掉，所以先建立一個git的標籤(tag)，之後需要參考時，checkout 此標籤即可。	
+	
+	\item 解決辦法：
+	
+	建立「RefVer」標籤
+	\begin{itemize}
+		\item 第一步驟
+		
+		\colorbox{mygray}{\$ git tag RefVer
+			}
+		
+		\item 第二步驟
+		
+		\colorbox{mygray}{\$ git push origin RefVer}
+			
+	\end{itemize}
+\end{enumerate}
+
+%\experiment{製作layout.tpl}
+\experiment{製作layout.tpl}
+
+\begin{enumerate}
+	\item 問題原因：
+	
+	每個頁面都有相同的header以及footer，製作layout.tpl樣板，可以讓每個頁面的頭尾都相同。	
+	
+	\item 解決辦法：
+	
+	\begin{itemize}
+		\item 將sample.html貼到layout.tpl檔，body的部份用\{\{.LayoutContent\}\}取代。
+				
+		\item 修改layout.tpl中css、js、fonts…...等的路徑，改成/static/css/…….。
+		
+		\item 將bootstrap的css、js、fonts…...等的檔案，複製到static下對應的路徑。
+		
+		\item 將homepage.html中body的部份貼到index.tpl裡。
+		
+		\item 其他細節參考米聽紀錄106/09/29
+		
+		\url{https://drive.google.com/open?id=1nxYJ4HLNCTJvEDQu7bVTM1Fs-pM4SiKjOUr1xN55fYg}
+		
+	\end{itemize}
+\end{enumerate}
+
+
+
+

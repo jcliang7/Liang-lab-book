@@ -1,0 +1,28 @@
+\labday{Friday, 29 September 2017}
+
+\experiment{執行bee run時，網頁無法正常運行，出現 ListenAndServe:  listen tcp :8080: bind: address already in use。}
+
+
+\begin{enumerate}
+\item 問題原因：
+
+因為在github上的程式碼有問題。當初直接複製test資料夾裡的hello資料夾，main.go以及routets.go的程式碼，import的pakage路徑都還是test/hello/…...>，所以出現錯誤。按下ctrl+C後，並沒有正常的關閉server，所以改完程式碼，執行bee run時，會顯示port以被監聽。
+
+
+\item 解決辦法：
+
+用指令強置殺掉port:8080
+
+	\begin{itemize}
+	\item 
+	\colorbox{mygray}{\$ lsof -ti:8080 |xargs kill -9}
+	
+	\item 結果chrome直接被我關掉，連其他瀏覽終的網頁都關了。
+	
+	
+	\end{itemize}
+\end{enumerate}
+
+
+
+

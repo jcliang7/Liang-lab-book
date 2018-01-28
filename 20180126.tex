@@ -1,0 +1,178 @@
+\labday{Friday, 26 January 2018}
+
+\experiment{完成簡單的註冊(建立資料庫、insert())}
+
+
+\begin{enumerate}
+\item 問題原因：
+
+\item 解決辦法：
+
+詳細作法參考米聽紀錄106/10/27
+
+\url{https://drive.google.com/open?id=1jIcO0eHeNEpuJYz-SRLf7iNQgVGGi2Z_96Dz3Sc3UxU}
+
+
+\end{enumerate}
+
+\experiment{解決insert資料到資料庫時，字串無法直接輸入null}
+
+
+\begin{enumerate}
+	\item 問題原因：
+	
+	註冊時，我希望username是null，且唯一。但是insert資料到user資料表的時候，username被填入空字串，使得username不唯一。好像是go默認string是size(255)，所以無法填入null。
+	
+	\url{https://beego.me/docs/mvc/model/models.md}
+	
+	
+	\item 解決辦法：
+	
+	在建立struct時，使用*string或sql.NullString取代string型態。
+	
+	\url{https://github.com/astaxie/beego/issues/816}
+	
+	\begin{itemize}
+		\item 使用*string型態，若使用sql.NullString，此表無法寫入null以外的值，所以我使用*string型態。
+		
+		\begin{lstlisting}
+type User struct {
+Id       int64   // Database primary key. AutoIncrement value
+Username *string `orm:"null;unique;"`
+Password string  `orm:"size(128)"`
+Email    string  `orm:"size(256);unique"`
+Admin    int64   `orm:"default(0)"`
+}
+		\end{lstlisting}
+		
+		
+		\item insert資料時
+		
+\begin{lstlisting}
+str := "my" + password
+user.Username = &str.
+\end{lstlisting}
+	
+	\end{itemize}
+\end{enumerate}
+
+
+\experiment{成功加入flash，但是flash不會消失}
+
+
+\begin{enumerate}
+	\item 問題原因：
+	
+	會發生這個問題是因為......
+	
+	
+	\item 解決辦法：
+	
+	參考官網＆老師的程式碼
+
+	\url{https://beego.me/docs/mvc/controller/flash.md}
+
+	\begin{itemize}
+		\item 在Post函數中設定flash的提示字串，自訂setFlash(str string)函數。
+		
+		\begin{lstlisting}
+func (c *MainController) Post() {
+	//Get form data
+	//Save to database or not?
+	if password == password2 {
+		//寫進資料庫
+	} else {
+		c.setFlash("兩次密碼不同")
+		c.Redirect("/", 302) //發生錯誤302，回到指定路徑
+	}
+	c.GetContent("index")
+}
+
+func (c *MainController) setFlash(str string) {
+	flash := beego.NewFlash()
+	flash.Notice(str)
+	flash.Store(&c.Controller)
+}
+
+		\end{lstlisting}
+		
+		\item 在Get方法中，若有收到flash提示字串，就會顯示，自訂getFlash()函數
+		
+\begin{lstlisting}
+func (c *MainController) Get() {
+	c.getFlash()
+	c.GetContent("index")
+}
+
+func (c *MainController) getFlash() {
+	flash := beego.ReadFromRequest(&c.Controller)
+	if n, ok := flash.Data["notice"]; ok {
+	c.Data["notice"] = n
+	}
+}
+
+\end{lstlisting}
+		
+		\item 在index.tpl中想要顯示flash的地方貼上以下程式碼
+		
+\begin{lstlisting}
+<!--107.01.28顯示密碼不同的flash -->
+{{if .flash.notice}}
+	<div id="alert60" class="alert alert-info">
+		<h4>{{.flash.notice}}</h4>
+	</div>
+	<script type="text/javascript">
+	<!--
+	$(document).ready(function () {
+	window.setTimeout(function() {
+		$(".alert").fadeTo(1500, 0).slideUp(500, function(){
+			$(this).remove(); 
+		});
+	}, 3500);
+	});
+	//-->
+</script>
+{{end}}
+\end{lstlisting}
+		
+	\end{itemize}
+\end{enumerate}
+
+\experiment{有bug的html5表單驗證}
+
+
+\begin{enumerate}
+	\item 問題原因：
+	
+	\url{http://pencil.logdown.com/posts/245628/html5-forms-validation}
+	
+	
+	\item 解決辦法：
+	
+	我用這樣這樣那樣那樣解決者個問題
+	\begin{itemize}
+		\item 第一步驟
+		
+		\colorbox{mygray}{\$ cmd指令1}
+		
+		\item 第二步驟
+		
+		\colorbox{mygray}{\$ cmd指令2}
+		
+		\item 第三步驟
+		
+		\colorbox{mygray}{\$ cmd指令3}
+		
+	\end{itemize}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+

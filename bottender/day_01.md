@@ -1,5 +1,7 @@
 # 安裝node.js
 
+[Sun , July 4, 2021, 16:52]
+
 安裝教學 https://titangene.github.io/article/nvm.html
 
 ## 安裝 nvm (node version manager) node 版本管理器。

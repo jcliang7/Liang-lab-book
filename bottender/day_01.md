@@ -18,7 +18,7 @@ nvm --version
 
 如果安裝成功，會顯示版本號碼。若失敗，請參考教學文的內容。
 
-
+<br>
 
 ## 用nvm安裝node.js。
 
@@ -32,7 +32,7 @@ nvm install node
 
 ![](./Fig/fig_01_installNode.png)
 
-
+<br>
 
 查看已安裝的node版本
 
@@ -42,7 +42,7 @@ node -v
 
 ![](./Fig/fig_02_nodeV.png)
 
-
+<br>
 
 ### 其他可能會用到的指令
 
@@ -52,7 +52,7 @@ node -v
 nvm install 8.9.1
 ```
 
-
+<br>
 
 查看可安裝的node版本(這個會列出超多)
 
@@ -66,7 +66,7 @@ nvm ls-remote
 nvm ls-remote --lts
 ```
 
-
+<br>
 
 查看已經安裝的版笨
 
@@ -74,7 +74,7 @@ nvm ls-remote --lts
 nvm ls
 ```
 
-
+<br>
 
 查看目前使用的版本
 
@@ -82,7 +82,7 @@ nvm ls
 nvm current
 ```
 
-
+<br>
 
 切換使用的node版本（小提示，可以用tab補齊版本號）
 

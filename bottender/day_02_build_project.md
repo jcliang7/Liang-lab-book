@@ -7,9 +7,9 @@ https://github.com/jcliang7/chatbot.git
 * 小意外：收到GitHub的mail通知，2021/08/13之後，不接受密碼登錄。
 * 忘記用git ignore了，套件全部傳上去了。
 
-### 我用的node版本是 v14.17.2
+### 用node v14.17.2
 
-### Terminal 出現需要fix的文字
+Terminal 出現需要fix的文字
 
 ![](./Fig/day2_01.png)
 
@@ -22,6 +22,10 @@ npm audit fix
 還是有警告，先不管它。
 
 ![](./Fig/day02_02.png)
+
+
+
+
 
 ### 加入 bottender.config.js 設定檔
 
@@ -50,4 +54,22 @@ npx bottender dev --console
 我輸入的對話，會多印一次在Terminal上面。
 
 ![](./Fig/day02_04.png)
+
+## 改用 node v16.4.1 無法 run
+
+因為忘記用 .gitignore，所以把專案砍掉重建。
+
+還是出現需要fix 的文字，需要用 --force 來fix
+
+```
+npm audit fix --force
+```
+
+![](./Fig/day02_05.png)
+
+### 結果無法run
+
+![](./Fig/day02_06.png)
+
+
 
